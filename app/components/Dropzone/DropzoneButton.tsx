@@ -104,7 +104,7 @@ export function DropzoneButton() {
         size="lg"
       >
         <Text>Here are the scan results for your uploaded image:</Text>
-        <Image src="./Images/glioma.jpg" />
+        <Image src="./Images/glioma.png" />
         {/* Tambahkan konten hasil scan di sini */}
         <Text>File Name: {files[0]?.name}</Text>
         <Text>File Size: {(files[0]?.size / 1024).toFixed(2)} KB</Text>

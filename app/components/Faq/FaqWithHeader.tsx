@@ -37,7 +37,7 @@ export function FaqWithHeader() {
   return (
     <Container className={classes.wrapper} size="lg">
       <div className={classes.header}>
-        <div>
+        <div id="faq">
           <Title className={classes.title}>Frequently Asked Questions</Title>
           <Title className={classes.titleOverlay} role="presentation">
             FAQ

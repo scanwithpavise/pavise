@@ -94,16 +94,16 @@ export function HeaderMegaMenu() {
             <a href="#" className={classes.link}>
               Features
             </a>
-            <a href="#" className={classes.link}>
+            <a href="#roadmap" className={classes.link}>
               Roadmap
             </a>
-            <a href="#" className={classes.link}>
+            <a href="#faq" className={classes.link}>
               FAQ
             </a>
           </Group>
 
           <Group visibleFrom="sm">
-            <Web3Button />
+            <w3m-button />
           </Group>
 
           <Burger
@@ -136,7 +136,7 @@ export function HeaderMegaMenu() {
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            <Web3Button />
+            <w3m-button />
           </Group>
         </ScrollArea>
       </Drawer>

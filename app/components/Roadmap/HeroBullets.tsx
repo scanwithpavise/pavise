@@ -22,7 +22,7 @@ import classes from "./HeroBullets.module.css";
 export function HeroBullets() {
   return (
     <Container size="md">
-      <div className={classes.inner}>
+      <div className={classes.inner} id="roadmap">
         <div className={classes.content}>
           <div data-aos="fade-right">
             <Title className={classes.title}>
