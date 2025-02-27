@@ -45,9 +45,6 @@ export function FaqWithHeader() {
         </div>
 
         <div className={classes.contact}>
-          <Text size="xl" fw={500} className={classes.contactTitle}>
-            Contact us
-          </Text>
           <ContactIconsList />
         </div>
       </div>

@@ -6,7 +6,6 @@ import {
   IconFingerprint,
   IconNotification,
 } from "@tabler/icons-react";
-import { Web3Button } from "@web3modal/react";
 import {
   Box,
   Burger,
@@ -21,9 +20,6 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMegaMenu.module.css";
-
-import { wagmiAdapter, projectId } from "./Config";
-import { createAppKit } from "@reown/appkit";
 
 const mockdata = [
   {
@@ -103,7 +99,7 @@ export function HeaderMegaMenu() {
           </Group>
 
           <Group visibleFrom="sm">
-            <w3m-button />
+
           </Group>
 
           <Burger
@@ -136,7 +132,6 @@ export function HeaderMegaMenu() {
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            <w3m-button />
           </Group>
         </ScrollArea>
       </Drawer>

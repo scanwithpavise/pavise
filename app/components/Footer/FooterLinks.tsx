@@ -1,7 +1,8 @@
 import {
   IconBrandGithub,
   IconBrandX,
-  IconBrandGmail
+  IconBrandGmail,
+  IconBook
 } from "@tabler/icons-react";
 import { ActionIcon, Container, Group, Text } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
@@ -77,6 +78,9 @@ export function FooterLinks() {
           </ActionIcon>
           <ActionIcon size="lg" color="white" variant="subtle">
             <IconBrandGithub size={18} stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon size="lg" color="white" variant="subtle">
+            <IconBook size={18} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>
