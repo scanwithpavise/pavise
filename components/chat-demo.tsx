@@ -31,11 +31,12 @@ export function ChatDemo(props: ChatDemoProps) {
           "How is a glioma diagnosed, and what tests are needed?",
           "What are the risk factors for developing a glioma?",
         ]}
-        components={{
-          p: ({ node, ...props }) => (
-            <p {...props} style={{ color: "black" }} />
-          ),
-        }}
+        // {/* @ts-expect-error msg */}
+        // components={{
+        //   p: ({ node, ...props }) => (
+        //     <p {...props} style={{ color: "black" }} />
+        //   ),
+        // }}
       />
     </div>
   );
