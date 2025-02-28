@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
 import { HeaderMegaMenu } from "./components/Navbar/HeaderMegaMenu";
-import { Flex, Grid, MantineProvider } from "@mantine/core";
+import { Container, Flex, Grid, MantineProvider } from "@mantine/core";
 import { HeroText } from "./components/Hero/Hero";
 import { FeaturesTitle } from "./components/Features/FeaturesTitle";
 import "@mantine/core/styles.css";
@@ -15,8 +15,9 @@ import { StatsRing } from "./components/Stats/StatRing";
 import { FaqWithHeader } from "./components/Faq/FaqWithHeader";
 import { CardWithStats } from "./components/CardWithStat/CardWithStats";
 import { HeroTitle } from "./components/About/HeroTitle";
-import { Text } from "@mantine/core";
 import { HeroBullets } from "./components/Roadmap/HeroBullets";
+import { ChatDemo } from "@/components/chat-demo";
+import Link from "next/link";
 export default function Home() {
   useEffect(() => {
     AOS.init();
@@ -30,12 +31,30 @@ export default function Home() {
         <LeadGrid />
         <HeroTitle />
         <FeaturesTitle />
-
         <HeroBullets />
+        <div data-aos="zoom-up">
+          <Container mx="auto">
+            <CardWithStats />
+          </Container>
+        </div>
+        <div data-aos="zoom-up">
+          <Container mx="auto">
+            <StatsRing />
+          </Container>
+        </div>
+        <div data-aos="zoom-up">
+          <Container mx="auto">
+            <h2 className="font-semibold">Scan Image</h2>
+          </Container>
+          <DropzoneButton />
+        </div>
 
-        <CardWithStats />
-        <StatsRing />
-        <DropzoneButton />
+        <Container mx="auto">
+          <h2 className="font-semibold">Ask Pavise</h2>
+          <div className="border rounded-md p-4">
+            <ChatDemo />
+          </div>
+        </Container>
         <FaqWithHeader />
         <FooterLinks />
       </MantineProvider>

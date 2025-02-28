@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState, useEffect } from "react";
 import { IconCloudUpload, IconDownload, IconX } from "@tabler/icons-react";
 import {
@@ -72,7 +73,7 @@ export function DropzoneButton() {
   };
 
   return (
-    <Container className={classes.wrapper} mx="auto">
+    <Container className={classes.wrapper} mx="auto" mb={12}>
       <div className={classes.wrapper}>
         <Dropzone
           openRef={openRef}
