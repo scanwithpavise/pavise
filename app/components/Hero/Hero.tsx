@@ -3,7 +3,6 @@ import { Button, Container, Flex, Text, Title } from "@mantine/core";
 import { Dots } from "./Dots";
 import classes from "./HeroText.module.css";
 import { ButtonCopy } from "../ButtonCopy/ButtonCopy";
-
 export function HeroText() {
   return (
     <Container className={classes.wrapper} size={1400}>
@@ -25,7 +24,6 @@ export function HeroText() {
           </Text>{" "}
           diagnose diseases
         </Title>
-
         <Container p={0} size={600}>
           <Text size="lg" c="dimmed" className={classes.description}>
             Helping you gain in-depth insights into your health condition and

@@ -140,16 +140,10 @@ export function MessageInput({
   }
 
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
-
   const showFileList =
     props.allowAttachments && props.files && props.files.length > 0
 
-  useAutosizeTextArea({
-    ref: textAreaRef,
-    maxHeight: 240,
-    borderWidth: 1,
-    dependencies: [props.value, showFileList],
-  })
+
 
   return (
     <div
