@@ -1,4 +1,4 @@
-import { Image } from "@mantine/core";
+import { Badge, Image } from "@mantine/core";
 import { Button, Container, Flex, Text, Title } from "@mantine/core";
 import { Dots } from "./Dots";
 import classes from "./HeroText.module.css";
@@ -16,6 +16,7 @@ export function HeroText() {
         <Title className={classes.title}>
           <div data-aos="zoom-up">
             <img src="/Images/pavise.jpeg" className={classes.pavise} />
+            <Badge>Beta VERSION</Badge>
           </div>
           Pavise first AI-powered Health Diagnostic{" "}
           <Text component="span" className={classes.highlight} inherit>
@@ -47,7 +48,7 @@ export function HeroText() {
               GitHub
             </a>
           </Button>
-          <Button className={classes.control} color="black" size="lg">
+          <Button className={classes.control} color="black" size="lg" id="#scanwithpavise">
             Get Started
           </Button>
         </div>
