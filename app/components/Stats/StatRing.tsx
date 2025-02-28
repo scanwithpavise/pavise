@@ -17,22 +17,22 @@ const icons = {
 const data = [
   {
     label: "Page views",
-    stats: "456,578",
-    progress: 65,
+    stats: "320",
+    progress: 10,
     color: "black",
     icon: "up",
   },
   {
     label: "Request users",
-    stats: "2,550",
-    progress: 72,
+    stats: "35",
+    progress: 10,
     color: "Black",
     icon: "up",
   },
   {
     label: "Scan",
-    stats: "4,735",
-    progress: 52,
+    stats: "27",
+    progress: 2,
     color: "black",
     icon: "down",
   },

@@ -4,7 +4,7 @@ import classes from "./HeroTitle.module.css";
 
 export function HeroTitle() {
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper} id="about">
       <Container size={700} className={classes.inner}>
         <div data-aos="zoom-up">
           <h1 className={classes.title}>

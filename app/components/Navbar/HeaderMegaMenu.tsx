@@ -84,10 +84,10 @@ export function HeaderMegaMenu() {
           <Text fw={600}>PAVISE</Text>
 
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <a href="#about" className={classes.link}>
               About
             </a>
-            <a href="#" className={classes.link}>
+            <a href="#features" className={classes.link}>
               Features
             </a>
             <a href="#roadmap" className={classes.link}>
@@ -99,7 +99,8 @@ export function HeaderMegaMenu() {
           </Group>
 
           <Group visibleFrom="sm">
-
+            {/* @ts-expect-error msg */}
+            <appkit-button />
           </Group>
 
           <Burger
@@ -132,6 +133,8 @@ export function HeaderMegaMenu() {
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
+            {/* @ts-expect-error msg */}
+            <appkit-button />
           </Group>
         </ScrollArea>
       </Drawer>

@@ -48,13 +48,13 @@ function ContactIcon({
 const MOCKDATA = [
   {
     title: "GitBook",
-    description: "PAVISE GitBook",
+    description: "Pavise GitBook",
     icon: IconBook,
     href: "https://pavise.gitbook.io/pavise",
   },
   {
     title: "X",
-    description: "@Scanwithpavise",
+    description: "@scanwithpavise",
     href: "https://x.com/ScanWithPavise",
     icon: IconBrandX,
   },
