@@ -29,7 +29,6 @@ export function ChatDemo(props: ChatDemoProps) {
         suggestions={[
           "What are the early symptoms of a glioma brain tumor?",
           "How is a glioma diagnosed, and what tests are needed?",
-          "What are the risk factors for developing a glioma?",
         ]}
         // {/* @ts-expect-error msg */}
         // components={{
