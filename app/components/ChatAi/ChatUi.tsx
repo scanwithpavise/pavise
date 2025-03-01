@@ -45,8 +45,6 @@ const ChatUI: React.FC = () => {
       if (!response.ok) throw new Error("Failed to fetch AI response");
 
       const data = await response.text();
-
-      // Tambahkan pesan AI
       const aiMessage: Message = {
         id: Date.now().toString(),
         text: data,
