@@ -26,25 +26,17 @@ export async function POST(req: Request) {
     );
 
     if (!response.ok) {
-      console.error("OpenRouter API Error:", response.statusText);
       return new Response(`OpenRouter API Error: ${response.statusText}`, {
         status: response.status,
       });
     }
 
     const data = await response.json();
-    console.log(
-      "Full Response from OpenRouter:",
-      JSON.stringify(data, null, 2)
-    );
-
-    // Ambil hanya isi pesan (content) dari AI
     const messageContent = data.choices?.[0]?.message?.content || "No response";
     return new Response(messageContent, {
       headers: { "Content-Type": "text/plain" },
     });
   } catch (error) {
-    console.error("Error in fetching OpenRouter API:", error);
     return new Response("Internal Server Error", { status: 500 });
   }
 }
