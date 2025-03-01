@@ -9,11 +9,8 @@
 }
 .wrapper {
   position: relative;
-  padding-top: 20px;
   padding-bottom: 80px;
-
   @media (max-width: $mantine-breakpoint-sm) {
-    padding-top: 60px;
     padding-bottom: 60px;
   }
 }

@@ -47,7 +47,7 @@ export function HeroText() {
             </a>
           </Button>
           <Button className={classes.control} color="black" size="lg" id="#scanwithpavise">
-            Get Started
+            <a href="#getstart">Get Started</a>
           </Button>
         </div>
       </div>
