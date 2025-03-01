@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { IconCloudUpload, IconDownload, IconX } from "@tabler/icons-react";
 import {
   Button,
@@ -32,8 +32,8 @@ export function DropzoneButton() {
   const [files, setFiles] = useState<File[]>([]); // State for uploaded files
   const [isLoading, setIsLoading] = useState(false); // State for loading animation
   const [resultImage, setResultImage] = useState<string | null>(null); // State for scanned image result
-  const [typedText, setTypedText] = useState(""); // State for typing animation
-  const [isTyping, setIsTyping] = useState(false); // State to control typing animation
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to check if user is logged in
+  const [showLoginModal, setShowLoginModal] = useState(false); // State to show login modal
 
   // Handle file drop
   const handleDrop = async (acceptedFiles: File[]) => {
@@ -44,14 +44,18 @@ export function DropzoneButton() {
     );
 
     if (isValidFile) {
-      setFiles(acceptedFiles);
+      if (isLoggedIn) {
+        setFiles(acceptedFiles);
 
-      // Check if the file exists in the result folder
-      const fileExists = await checkFileExists(acceptedFiles[0].name);
-      if (fileExists) {
-        setResultImage(`/result/${acceptedFiles[0].name}`);
+        // Check if the file exists in the result folder
+        const fileExists = await checkFileExists(acceptedFiles[0].name);
+        if (fileExists) {
+          setResultImage(`/result/${acceptedFiles[0].name}`);
+        } else {
+          setResultImage(URL.createObjectURL(acceptedFiles[0]));
+        }
       } else {
-        setResultImage(URL.createObjectURL(acceptedFiles[0]));
+        setShowLoginModal(true); // Show login modal if user is not logged in
       }
     } else {
       alert(
@@ -62,14 +66,24 @@ export function DropzoneButton() {
 
   const handleScanClick = () => {
     if (files.length > 0) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        setOpened(true);
-      }, 2000);
+      if (isLoggedIn) {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          setOpened(true);
+        }, 2000);
+      } else {
+        setShowLoginModal(true); // Show login modal if user is not logged in
+      }
     } else {
       alert("Please upload an image first!");
     }
+  };
+
+  const handleLogin = () => {
+    // Implement your login logic here
+    setIsLoggedIn(true);
+    setShowLoginModal(false);
   };
 
   return (
@@ -126,13 +140,29 @@ export function DropzoneButton() {
       </div>
 
       {/* Modal to display scan results */}
-      <Modal
+      {/* <Modal
         opened={opened}
         onClose={() => setOpened(false)} // Close modal
         title="Scan Results"
         size="lg"
       >
         {resultImage && <Image src={resultImage} />}
+      </Modal> */}
+
+      {/* Modal to prompt user to login */}
+      <Modal
+        opened={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        title="Warning!"
+        size="md"
+        color="red"
+      >
+        <Text>
+          To access this feature, please connect your wallet and sign in
+        </Text>
+        <Button onClick={handleLogin} color="blue" mt={4}>
+          Close
+        </Button>
       </Modal>
     </Container>
   );

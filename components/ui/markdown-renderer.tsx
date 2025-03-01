@@ -13,7 +13,6 @@ export function MarkdownRenderer({ children }: MarkdownRendererProps) {
   return (
     <Markdown
       remarkPlugins={[remarkGfm]}
-  
       className="space-y-3"
     >
       {children}
@@ -138,6 +137,5 @@ function childrenTakeAllStringContents(element: any): string {
 
   return ""
 }
-
 
 export default MarkdownRenderer

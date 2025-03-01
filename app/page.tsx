@@ -17,7 +17,7 @@ import { CardWithStats } from "./components/CardWithStat/CardWithStats";
 import { HeroTitle } from "./components/About/HeroTitle";
 import { HeroBullets } from "./components/Roadmap/HeroBullets";
 import { ChatDemo } from "@/components/chat-demo";
-import Link from "next/link";
+import ChatUI from "./components/ChatAi/ChatUi";
 export default function Home() {
   useEffect(() => {
     AOS.init();
@@ -51,9 +51,8 @@ export default function Home() {
 
         <Container mx="auto">
           <h2 className="font-semibold">Ask Pavise</h2>
-          <div className="border rounded-md p-4">
-            <ChatDemo />
-          </div>
+          {/* <ChatDemo /> */}
+          <ChatUI />
         </Container>
         <FaqWithHeader />
         <FooterLinks />

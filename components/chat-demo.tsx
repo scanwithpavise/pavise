@@ -30,12 +30,6 @@ export function ChatDemo(props: ChatDemoProps) {
           "What are the early symptoms of a glioma brain tumor?",
           "How is a glioma diagnosed, and what tests are needed?",
         ]}
-        // {/* @ts-expect-error msg */}
-        // components={{
-        //   p: ({ node, ...props }) => (
-        //     <p {...props} style={{ color: "black" }} />
-        //   ),
-        // }}
       />
     </div>
   );

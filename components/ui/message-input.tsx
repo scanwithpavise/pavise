@@ -34,7 +34,7 @@ type MessageInputProps =
   | MessageInputWithAttachmentsProps
 
 export function MessageInput({
-  placeholder = "Ask Pavise...",
+  placeholder = "Ask AI...",
   className,
   onKeyDown: onKeyDownProp,
   submitOnEnter = true,
@@ -140,10 +140,16 @@ export function MessageInput({
   }
 
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+
   const showFileList =
     props.allowAttachments && props.files && props.files.length > 0
 
-
+  // useAutosizeTextArea({
+  //   ref: textAreaRef,
+  //   maxHeight: 240,
+  //   borderWidth: 1,
+  //   dependencies: [props.value, showFileList],
+  // })
 
   return (
     <div
