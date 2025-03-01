@@ -76,15 +76,16 @@ export function FeaturesTitle() {
             smarter, and more accurate healthcare decisions
           </Text>
 
-          <Button
+          {/* <Button
             variant="gradient"
             gradient={{ deg: 133, from: "black", to: "black" }}
             size="lg"
             radius="md"
             mt="xl"
+            id=""
           >
             Get started
-          </Button>
+          </Button> */}
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 7 }}>
           <div data-aos="zoom-in">

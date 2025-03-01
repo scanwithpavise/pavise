@@ -9,6 +9,7 @@ import {
 import {
   Box,
   Burger,
+  Button,
   Divider,
   Drawer,
   Group,
@@ -94,13 +95,21 @@ export function HeaderMegaMenu() {
               Roadmap
             </a>
             <a href="#faq" className={classes.link}>
-              FAQ
+              Early Access
             </a>
           </Group>
 
-          <Group visibleFrom="sm">
-            {/* @ts-expect-error msg */}
-            <appkit-button />
+          <Group
+            visibleFrom="sm"
+            align="center"
+            style={{ flexDirection: "column", gap: 0 }}
+          >
+            <Button bg="black" style={{ margin: 0, padding: 10 }}>
+              Connect Wallet
+            </Button>
+            <Text size="xs" c="red" style={{ margin: 0, padding: 0 }}>
+              Coming Soon
+            </Text>
           </Group>
 
           <Burger
@@ -133,8 +142,8 @@ export function HeaderMegaMenu() {
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            {/* @ts-expect-error msg */}
-            <appkit-button />
+            {/* <appkit-button /> */}
+            <Button bg="black">Connect Wallet</Button>
           </Group>
         </ScrollArea>
       </Drawer>

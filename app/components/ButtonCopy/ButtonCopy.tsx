@@ -28,10 +28,10 @@ export function ButtonCopy() {
         h={48}
         styles={{ section: { marginLeft: 22 } }}
         onClick={() =>
-          clipboard.copy("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+          clipboard.copy("")
         }
       >
-        CA : IEclkdarovawjrkghOIJSF1234
+        CA : -
       </Button>
     </Tooltip>
   );

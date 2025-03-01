@@ -16,8 +16,27 @@
     calc(var(--mantine-spacing-xl) * 2);
   border-radius: var(--mantine-radius-lg);
   margin-bottom: var(--mantine-spacing-lg);
+  overflow: hidden; /* Pastikan pseudo-element tidak melebihi container */
+}
 
-  @media (max-width: em(1080px)) {
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Hitam dengan opacity 50% */
+  z-index: 1; /* Pastikan lapisan hitam berada di atas gambar latar belakang */
+}
+
+.header > * {
+  position: relative;
+  z-index: 2; /* Pastikan konten (seperti teks) berada di atas lapisan hitam */
+}
+
+@media (max-width: em(1080px)) {
+  .header {
     height: auto;
     flex-direction: column-reverse;
     align-items: initial;

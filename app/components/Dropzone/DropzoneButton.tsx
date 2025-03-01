@@ -86,6 +86,15 @@ export function DropzoneButton() {
     setShowLoginModal(false);
   };
 
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
+    // Scroll to the element with id="FAQ"
+    const faqElement = document.getElementById("faq");
+    if (faqElement) {
+      faqElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <Container className={classes.wrapper} mx="auto" mb={12}>
       <div className={classes.wrapper}>
@@ -97,7 +106,7 @@ export function DropzoneButton() {
           accept={[MIME_TYPES.png, MIME_TYPES.jpeg]}
           maxSize={30 * 1024 ** 2}
         >
-          <div style={{ pointerEvents: "none" }}>
+          <div style={{ pointerEvents: "none" }} id="getstart">
             <Group justify="center">
               <Dropzone.Accept>
                 <IconDownload
@@ -140,27 +149,26 @@ export function DropzoneButton() {
       </div>
 
       {/* Modal to display scan results */}
-      {/* <Modal
+      <Modal
         opened={opened}
         onClose={() => setOpened(false)} // Close modal
         title="Scan Results"
         size="lg"
       >
         {resultImage && <Image src={resultImage} />}
-      </Modal> */}
+      </Modal>
 
       {/* Modal to prompt user to login */}
       <Modal
         opened={showLoginModal}
-        onClose={() => setShowLoginModal(false)}
-        title="Warning!"
+        onClose={handleCloseLoginModal}
         size="md"
         color="red"
       >
         <Text>
-          To access this feature, please connect your wallet and sign in
+          You don't have access to this feature, please join early access!
         </Text>
-        <Button onClick={handleLogin} color="blue" mt={4}>
+        <Button bg="black" mt="md" fullWidth onClick={handleCloseLoginModal}>
           Close
         </Button>
       </Modal>
