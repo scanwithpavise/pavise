@@ -142,9 +142,6 @@ export function HeaderMegaMenu() {
             align="center"
             style={{ flexDirection: "column", gap: 0 }}
           >
-            {/* <Button bg="black" style={{ margin: 0, padding: 10 }}>
-              Connect Wallet
-            </Button> */}
             {/* @ts-expect-error msg */}
             <appkit-connect-button wallet="phantom" />
           </Group>
@@ -183,7 +180,6 @@ export function HeaderMegaMenu() {
           </a>
 
           <Divider my="sm" />
-
           <Group justify="center" grow pb="xl" px="md">
             {/* @ts-expect-error msg */}
             <appkit-connect-button wallet="phantom" />
