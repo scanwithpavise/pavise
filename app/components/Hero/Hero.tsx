@@ -3,14 +3,10 @@ import { Button, Container, Flex, Text, Title } from "@mantine/core";
 import { Dots } from "./Dots";
 import classes from "./HeroText.module.css";
 import { ButtonCopy } from "../ButtonCopy/ButtonCopy";
+import { RetroGrid } from "@/components/magicui/retro-grid";
 export function HeroText() {
   return (
-    <Container className={classes.wrapper} size={1400}>
-      <Dots className={classes.dots} style={{ left: 0, top: 0 }} />
-      <Dots className={classes.dots} style={{ left: 60, top: 0 }} />
-      <Dots className={classes.dots} style={{ left: 0, top: 140 }} />
-      <Dots className={classes.dots} style={{ right: 0, top: 60 }} />
-
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-background">
       <div className={classes.inner}>
         <Title className={classes.title}>
           <div data-aos="zoom-up">
@@ -46,11 +42,17 @@ export function HeroText() {
               GitHub
             </a>
           </Button>
-          <Button className={classes.control} color="black" size="lg" id="#scanwithpavise">
+          <Button
+            className={classes.control}
+            color="black"
+            size="lg"
+            id="#scanwithpavise"
+          >
             <a href="#getstart">Get Started</a>
           </Button>
         </div>
       </div>
-    </Container>
+      <RetroGrid />
+    </div>
   );
 }

@@ -17,6 +17,7 @@ import { CardWithStats } from "./components/CardWithStat/CardWithStats";
 import { HeroTitle } from "./components/About/HeroTitle";
 import { HeroBullets } from "./components/Roadmap/HeroBullets";
 import ChatUI from "./components/ChatAi/ChatUi";
+import { RetroGrid } from "@/components/magicui/retro-grid";
 export default function Home() {
   useEffect(() => {
     AOS.init();

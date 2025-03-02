@@ -70,10 +70,19 @@ export default {
   				'20%': {
   					transform: 'translateY(-0.25rem)'
   				}
+  			},
+  			grid: {
+  				'0%': {
+  					transform: 'translateY(-50%)'
+  				},
+  				'100%': {
+  					transform: 'translateY(0)'
+  				}
   			}
   		},
   		animation: {
-  			'typing-dot-bounce': 'typing-dot-bounce 1.25s ease-out infinite'
+  			'typing-dot-bounce': 'typing-dot-bounce 1.25s ease-out infinite',
+  			grid: 'grid 15s linear infinite'
   		}
   	}
   },
