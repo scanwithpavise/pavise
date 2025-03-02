@@ -9,7 +9,6 @@ import {
 import {
   Box,
   Burger,
-  Button,
   Divider,
   Drawer,
   Group,
@@ -19,8 +18,17 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
+import '@reown/appkit-wallet-button/react';
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMegaMenu.module.css";
+import { SolanaAdapter } from "@reown/appkit-adapter-solana/react";
+import { solana, solanaTestnet, solanaDevnet } from "@reown/appkit/networks";
+import {
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
+import '@reown/appkit-wallet-button/react';
+import { createAppKit } from "@reown/appkit";
 
 const mockdata = [
   {
@@ -54,6 +62,36 @@ const mockdata = [
     description: "Combusken battles with the intensely hot flames it spews",
   },
 ];
+
+export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+if (!projectId) {
+  throw new Error("Project Id is not defined.");
+}
+
+export const networks = [solana, solanaTestnet, solanaDevnet];
+
+export const solanaWeb3JsAdapter = new SolanaAdapter({
+  wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
+});
+const metadata = {
+  name: "appkit-example",
+  description: "AppKit Example - Solana",
+  url: "https://exampleapp.com",
+  icons: ["https://avatars.githubusercontent.com/u/37784886"],
+};
+
+const modal = createAppKit({
+  adapters: [solanaWeb3JsAdapter],
+  projectId,
+  networks: [solana, solanaTestnet, solanaDevnet],
+  features: {
+    analytics: true,
+    email: true,
+    socials: ["google", "x", "github", "discord", "farcaster"],
+    emailShowWallets: true,
+  },
+  themeMode: "light",
+});
 
 export function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -104,12 +142,11 @@ export function HeaderMegaMenu() {
             align="center"
             style={{ flexDirection: "column", gap: 0 }}
           >
-            <Button bg="black" style={{ margin: 0, padding: 10 }}>
+            {/* <Button bg="black" style={{ margin: 0, padding: 10 }}>
               Connect Wallet
-            </Button>
-            <Text size="xs" c="red" style={{ margin: 0, padding: 0 }}>
-              Coming Soon
-            </Text>
+            </Button> */}
+            {/* @ts-expect-error msg */}
+            <appkit-connect-button wallet="phantom" />
           </Group>
 
           <Burger
@@ -132,18 +169,24 @@ export function HeaderMegaMenu() {
         <ScrollArea h="calc(100vh - 80px" mx="-md">
           <Divider my="sm" />
 
-          <a href="#" className={classes.link}>
-            Home
+          <a href="#about" className={classes.link}>
+            About
           </a>
-          <a href="#" className={classes.link}>
-            Academy
+          <a href="#features" className={classes.link}>
+            Features
+          </a>
+          <a href="#roadmap" className={classes.link}>
+            Roadmap
+          </a>
+          <a href="#faq" className={classes.link}>
+            Early Access
           </a>
 
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            {/* <appkit-button /> */}
-            <Button bg="black">Connect Wallet</Button>
+            {/* @ts-expect-error msg */}
+            <appkit-connect-button wallet="phantom" />
           </Group>
         </ScrollArea>
       </Drawer>

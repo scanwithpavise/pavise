@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
 import { HeaderMegaMenu } from "./components/Navbar/HeaderMegaMenu";
-import { Container, Flex, Grid, MantineProvider } from "@mantine/core";
+import { Container, MantineProvider } from "@mantine/core";
 import { HeroText } from "./components/Hero/Hero";
 import { FeaturesTitle } from "./components/Features/FeaturesTitle";
 import "@mantine/core/styles.css";
@@ -16,7 +16,6 @@ import { FaqWithHeader } from "./components/Faq/FaqWithHeader";
 import { CardWithStats } from "./components/CardWithStat/CardWithStats";
 import { HeroTitle } from "./components/About/HeroTitle";
 import { HeroBullets } from "./components/Roadmap/HeroBullets";
-import { ChatDemo } from "@/components/chat-demo";
 import ChatUI from "./components/ChatAi/ChatUi";
 export default function Home() {
   useEffect(() => {
@@ -37,11 +36,11 @@ export default function Home() {
             <CardWithStats />
           </Container>
         </div>
-        <div data-aos="zoom-up">
+        {/* <div data-aos="zoom-up">
           <Container mx="auto">
             <StatsRing />
           </Container>
-        </div>
+        </div> */}
         <div data-aos="zoom-up">
           <Container mx="auto">
             <h2 className="font-semibold">Scan Image</h2>
