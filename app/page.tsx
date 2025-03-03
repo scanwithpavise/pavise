@@ -25,38 +25,42 @@ export default function Home() {
   }, []);
   return (
     <>
-      <MantineProvider>
-        <HeaderMegaMenu />
-        <HeroText />
-        <LeadGrid />
-        <HeroTitle />
-        <FeaturesTitle />
-        <HeroBullets />
-        <div data-aos="zoom-up">
-          <Container mx="auto">
-            <CardWithStats />
-          </Container>
-        </div>
-        {/* <div data-aos="zoom-up">
+      <main>
+        <MantineProvider>
+          <HeaderMegaMenu />
+          <HeroText />
+          <LeadGrid />
+          <HeroTitle />
+          <FeaturesTitle />
+          <div data-aos="zoom-up">
+            <HeroBullets />
+          </div>
+          <div data-aos="zoom-up">
+            <Container mx="auto">
+              <CardWithStats />
+            </Container>
+          </div>
+          {/* <div data-aos="zoom-up">
           <Container mx="auto">
             <StatsRing />
           </Container>
         </div> */}
-        <div data-aos="zoom-up">
-          <Container mx="auto">
-            <h2 className="font-semibold">Scan Image</h2>
-          </Container>
-          <DropzoneButton />
-        </div>
+          <div data-aos="zoom-up">
+            <Container mx="auto">
+              <h2 className="font-semibold">Scan Image</h2>
+            </Container>
+            <DropzoneButton />
+          </div>
 
-        <Container mx="auto">
-          <h2 className="font-semibold">Ask Pavise</h2>
-          {/* <ChatDemo /> */}
-          <ChatUI />
-        </Container>
-        <FaqWithHeader />
-        <FooterLinks />
-      </MantineProvider>
+          <Container mx="auto">
+            <h2 className="font-semibold">Ask Pavise</h2>
+            {/* <ChatDemo /> */}
+            <ChatUI />
+          </Container>
+          <FaqWithHeader />
+          <FooterLinks />
+        </MantineProvider>
+      </main>
     </>
   );
 }

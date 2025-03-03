@@ -24,7 +24,7 @@ export function HeroBullets() {
     <Container size="md">
       <div className={classes.inner} id="roadmap">
         <div className={classes.content}>
-          <div data-aos="zoom-up">
+          <div>
             <Title className={classes.title}>
               Pavise <span className={classes.highlight}>Roadmap</span>
               <br />
@@ -60,7 +60,7 @@ export function HeroBullets() {
           </div>
         </div>
         <div>
-          <div data-aos="fade-left">
+          <div data-aos="zoom-up">
             <Timeline active={1} bulletSize={24} lineWidth={2}>
               <Timeline.Item
                 bullet={<IconRocket size={12} />}
