@@ -9,6 +9,7 @@ import {
 import {
   Box,
   Burger,
+  Button,
   Divider,
   Drawer,
   Group,
@@ -18,7 +19,7 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
-import '@reown/appkit-wallet-button/react';
+import "@reown/appkit-wallet-button/react";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMegaMenu.module.css";
 import { SolanaAdapter } from "@reown/appkit-adapter-solana/react";
@@ -27,7 +28,7 @@ import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import '@reown/appkit-wallet-button/react';
+import "@reown/appkit-wallet-button/react";
 import { createAppKit } from "@reown/appkit";
 
 const mockdata = [
@@ -63,41 +64,62 @@ const mockdata = [
   },
 ];
 
-export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
-if (!projectId) {
-  throw new Error("Project Id is not defined.");
-}
+// export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+// if (!projectId) {
+//   throw new Error("Project Id is not defined.");
+// }
 
-export const networks = [solana, solanaTestnet, solanaDevnet];
+// export const networks = [solana, solanaTestnet, solanaDevnet];
 
-export const solanaWeb3JsAdapter = new SolanaAdapter({
-  wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
-});
-const metadata = {
-  name: "appkit-example",
-  description: "AppKit Example - Solana",
-  url: "https://exampleapp.com",
-  icons: ["https://avatars.githubusercontent.com/u/37784886"],
-};
+// export const solanaWeb3JsAdapter = new SolanaAdapter({
+//   wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
+// });
+// const metadata = {
+//   name: "appkit-example",
+//   description: "AppKit Example - Solana",
+//   url: "https://exampleapp.com",
+//   icons: ["https://avatars.githubusercontent.com/u/37784886"],
+// };
 
-const modal = createAppKit({
-  adapters: [solanaWeb3JsAdapter],
-  projectId,
-  networks: [solana, solanaTestnet, solanaDevnet],
-  features: {
-    analytics: true,
-    email: true,
-    socials: ["google", "x", "github", "discord", "farcaster"],
-    emailShowWallets: true,
-  },
-  themeMode: "light",
-});
+// const modal = createAppKit({
+//   adapters: [solanaWeb3JsAdapter],
+//   projectId,
+//   networks: [solana, solanaTestnet, solanaDevnet],
+//   features: {
+//     analytics: true,
+//     email: true,
+//     socials: ["google", "x", "github", "discord", "farcaster"],
+//     emailShowWallets: true,
+//   },
+//   themeMode: "light",
+// });
+
+import { FC, ReactNode, useMemo } from "react";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import {
+  WalletModalProvider,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
+import {
+  clusterApiUrl,
+  Transaction,
+  PublicKey,
+  SystemProgram,
+} from "@solana/web3.js";
+import "@solana/wallet-adapter-react-ui/styles.css";
 
 export function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
+
+  const endpoint = clusterApiUrl("devnet");
+  const wallets = useMemo(() => [], []);
+
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group wrap="nowrap" align="flex-start">
@@ -142,8 +164,13 @@ export function HeaderMegaMenu() {
             align="center"
             style={{ flexDirection: "column", gap: 0 }}
           >
-            {/* @ts-expect-error msg */}
-            <appkit-connect-button wallet="phantom" />
+            <ConnectionProvider endpoint={endpoint}>
+              <WalletProvider wallets={wallets}>
+                <WalletModalProvider>
+                  <WalletMultiButton />
+                </WalletModalProvider>
+              </WalletProvider>
+            </ConnectionProvider>
           </Group>
 
           <Burger
@@ -181,8 +208,13 @@ export function HeaderMegaMenu() {
 
           <Divider my="sm" />
           <Group justify="center" grow pb="xl" px="md">
-            {/* @ts-expect-error msg */}
-            <appkit-connect-button wallet="phantom" />
+            <ConnectionProvider endpoint={endpoint}>
+              <WalletProvider wallets={wallets}>
+                <WalletModalProvider>
+                  <WalletMultiButton />
+                </WalletModalProvider>
+              </WalletProvider>
+            </ConnectionProvider>
           </Group>
         </ScrollArea>
       </Drawer>

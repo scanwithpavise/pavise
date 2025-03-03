@@ -24,7 +24,7 @@ export function HeroBullets() {
     <Container size="md">
       <div className={classes.inner} id="roadmap">
         <div className={classes.content}>
-          <div data-aos="fade-right">
+          <div data-aos="zoom-up">
             <Title className={classes.title}>
               Pavise <span className={classes.highlight}>Roadmap</span>
               <br />
