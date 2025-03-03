@@ -2,7 +2,7 @@ import { IconCheck, IconCopy } from "@tabler/icons-react";
 import { Button, Tooltip } from "@mantine/core";
 import { useClipboard } from "@mantine/hooks";
 
-export function ButtonCopy() {
+export function  ButtonCopy() {
   const clipboard = useClipboard();
   return (
     <Tooltip
@@ -28,10 +28,10 @@ export function ButtonCopy() {
         h={48}
         styles={{ section: { marginLeft: 22 } }}
         onClick={() =>
-          clipboard.copy("")
+          clipboard.copy("2TUQ21D87yrbZM1F3RB93sbkiGXeTTfkb8wWqG2ipump")
         }
       >
-        CA : -
+        CA : 2TUQ21D87yrbZM1F3RB93sbkiGXeTTfkb8wWqG2ipump
       </Button>
     </Tooltip>
   );
