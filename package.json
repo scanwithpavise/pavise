@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^0.1.12",
-    "@ai-sdk/fireworks": "^0.1.12",
     "@ai-sdk/openai": "^1.1.15",
     "@ai-sdk/react": "^1.1.18",
     "@mantine/carousel": "^7.17.0",
@@ -30,8 +29,9 @@
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
-    "@tabler/icons-react": "^3.30.0",
+    "@tabler/icons-react": "^3.31.0",
     "@tanstack/react-query": "^5.66.9",
+    "@tensorflow/tfjs": "^4.22.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "@walletconnect/core": "^2.19.0",

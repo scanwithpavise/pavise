@@ -39,22 +39,16 @@ export default function Home() {
             <Container mx="auto">
               <CardWithStats />
             </Container>
-          </div>
-          {/* <div data-aos="zoom-up">
-          <Container mx="auto">
-            <StatsRing />
-          </Container>
-        </div> */}
+          </div> 
           <div data-aos="zoom-up">
             <Container mx="auto">
-              <h2 className="font-semibold">Scan Image</h2>
+              <h2 className="font-semibold mt-4 mb-4">Scan Image</h2>
             </Container>
             <DropzoneButton />
           </div>
 
           <Container mx="auto">
             <h2 className="font-semibold">Ask Pavise</h2>
-            {/* <ChatDemo /> */}
             <ChatUI />
           </Container>
           <FaqWithHeader />

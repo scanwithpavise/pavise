@@ -11,12 +11,6 @@ const ChatUI: React.FC = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll ke pesan terbaru
-//   useEffect(() => {
-//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-//   }, [messages]);
-
   const handleSend = async () => {
     if (input.trim() === "") return;
 
@@ -41,9 +35,7 @@ const ChatUI: React.FC = () => {
           messages: [{ role: "user", content: input }],
         }),
       });
-
       if (!response.ok) throw new Error("Failed to fetch AI response");
-
       const data = await response.text();
       const aiMessage: Message = {
         id: Date.now().toString(),

@@ -2,12 +2,11 @@ import {
   IconBrandGithub,
   IconBrandX,
   IconBrandGmail,
-  IconBook
+  IconBook,
 } from "@tabler/icons-react";
 import { ActionIcon, Container, Group, Text } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import classes from "./FooterLinks.module.css";
-
 const data = [
   {
     title: "About",
