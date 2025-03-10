@@ -7,13 +7,13 @@ import {
   Group,
   Text,
   useMantineTheme,
-  Modal,
   Loader,
   Image,
 } from "@mantine/core";
 import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
 import * as tf from "@tensorflow/tfjs";
 import classes from "./DropzoneButton.module.css";
+import { Paper } from "@mantine/core";
 
 export function DropzoneButton() {
   const theme = useMantineTheme();
@@ -28,6 +28,59 @@ export function DropzoneButton() {
   const [isLoading, setIsLoading] = useState(false);
   const [opened, setOpened] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [aiResponse, setAiResponse] = useState<{
+    id: string;
+    text: string;
+    sender: string;
+  } | null>(null);
+
+  const sendPredictionsToAI = async (
+    context: string,
+    predictions: { label: string; confidence: number }[]
+  ) => {
+    try {
+      const predictionsContent = predictions
+        .map(
+          (prediction) =>
+            `${prediction.label} (${(prediction.confidence * 100).toFixed(2)}%)`
+        )
+        .join(", ");
+
+      const messageContent = `${context}: ${predictionsContent}`;
+
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: messageContent }],
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch AI response");
+
+      const data = await response.text();
+
+      const aiMessage = {
+        id: Date.now().toString(),
+        text: data,
+        sender: "ai",
+      };
+
+      setAiResponse(aiMessage);
+      return aiMessage;
+    } catch (error) {
+      console.error("Error:", error);
+      const errorMessage = {
+        id: Date.now().toString(),
+        text: "Failed to get response from AI.",
+        sender: "ai",
+      };
+      setAiResponse(errorMessage);
+      return errorMessage;
+    }
+  };
 
   useEffect(() => {
     async function loadModel() {
@@ -35,7 +88,7 @@ export function DropzoneButton() {
         const loadedModel = await tf.loadGraphModel(
           "/models/my-model/model.json"
         );
-        setModel(loadedModel); 
+        setModel(loadedModel);
       } catch (error) {
         console.error("Error loading model:", error);
       }
@@ -71,50 +124,6 @@ export function DropzoneButton() {
     }
   };
 
-  // const runInference = async () => {
-  //   if (!model || !imageRef.current || !canvasRef.current) return;
-
-  //   setIsLoading(true);
-  //   const img = imageRef.current;
-  //   let tensor = tf.browser
-  //     .fromPixels(img)
-  //     .resizeNearestNeighbor([224, 224])
-  //     .expandDims()
-  //     .toInt();
-
-  //   try {
-  //     const output = await model.executeAsync({ input_tensor: tensor });
-  //     const numDetections = (await output[0].data())[0];
-  //     const boxes = await output[6].data();
-  //     const scores = await output[3].data();
-  //     const classes = await output[4].data();
-
-  //     const formattedPredictions = [];
-  //     for (let i = 0; i < numDetections; i++) {
-  //       if (scores[i] > 0.5) {
-  //         const classId = Math.floor(classes[i]);
-  //         formattedPredictions.push({
-  //           label: LABELS[classId] || "tumor",
-  //           confidence: Math.round(scores[i] * 100) / 100,
-  //           box: [
-  //             boxes[i * 4],
-  //             boxes[i * 4 + 1],
-  //             boxes[i * 4 + 2],
-  //             boxes[i * 4 + 3],
-  //           ],
-  //         });
-  //       }
-  //     }
-
-  //     setPredictions(formattedPredictions);
-  //     drawBoundingBoxes(formattedPredictions);
-  //     setOpened(true);
-  //   } catch (error) {
-  //     console.error("Error during inference:", error);
-  //   }
-  //   setIsLoading(false);
-  // };
-
   const LABELS: Record<number, string> = {
     1: "glioma",
     2: "meningioma",
@@ -126,8 +135,6 @@ export function DropzoneButton() {
 
     setIsLoading(true);
     const img = imageRef.current;
-
-    // Konversi gambar menjadi tensor
     let tensor = tf.browser
       .fromPixels(img)
       .resizeNearestNeighbor([224, 224])
@@ -135,9 +142,7 @@ export function DropzoneButton() {
       .toInt();
 
     try {
-      // Jalankan model untuk mendapatkan prediksi
       const output = await model.executeAsync({ input_tensor: tensor });
-
       if (Array.isArray(output)) {
         const [
           numDetectionsTensor,
@@ -159,11 +164,10 @@ export function DropzoneButton() {
           const boxes = await boxesTensor.data();
           const scores = await scoresTensor.data();
           const classes = await classesTensor.data();
-
           const formattedPredictions = [];
           for (let i = 0; i < numDetections; i++) {
             if (scores[i] > 0.5) {
-              const classId = Math.floor(classes[i]); // Pastikan classId adalah integer
+              const classId = Math.floor(classes[i]);
               formattedPredictions.push({
                 label: LABELS[classId] || "tumor",
                 confidence: Math.round(scores[i] * 100) / 100,
@@ -176,10 +180,13 @@ export function DropzoneButton() {
               });
             }
           }
-
           setPredictions(formattedPredictions);
           drawBoundingBoxes(formattedPredictions);
           setOpened(true);
+          const aiResponse = await sendPredictionsToAI(
+            "please give recommendations for treatment of tumors",
+            formattedPredictions
+          );
         } else {
           console.error("Unexpected tensor format in model output.");
         }
@@ -307,7 +314,25 @@ export function DropzoneButton() {
           </div>
         )}
       </Dropzone>
-
+      {aiResponse && (
+        <div
+          style={{ marginTop: "20px", textAlign: "center", padding: "10px" }}
+        >
+          <Paper
+            shadow="sm"
+            p="md"
+            style={{
+              borderRadius: "10px",
+              maxWidth: "100%",
+              marginLeft: "auto", // Tengahkan secara horizontal
+              marginRight: "auto", // Tengahkan secara horizontal
+              border: "1px solid #ccc", // Border biasa (tidak putus-putus)
+            }}
+          >
+            <Text>{aiResponse.text}</Text>
+          </Paper>
+        </div>
+      )}
       <Group justify="center" mt="xl">
         <Button
           onClick={runInference}
@@ -316,9 +341,11 @@ export function DropzoneButton() {
             background: "linear-gradient(145deg,rgb(0, 0, 0),rgb(0, 0, 0))",
             border: "none",
             borderRadius: "25px",
-            padding: "10px 30px",
+            padding: "5px 30px",
             fontSize: "16px",
             fontWeight: 600,
+            height:60,
+            width: 600,
             color: "white",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             transition: "all 0.3s ease",

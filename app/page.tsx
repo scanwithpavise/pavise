@@ -11,13 +11,11 @@ import "@mantine/core/styles.css";
 import { FooterLinks } from "./components/Footer/FooterLinks";
 import { DropzoneButton } from "./components/Dropzone/DropzoneButton";
 import { LeadGrid } from "./components/Grid/LeadGrid";
-import { StatsRing } from "./components/Stats/StatRing";
 import { FaqWithHeader } from "./components/Faq/FaqWithHeader";
 import { CardWithStats } from "./components/CardWithStat/CardWithStats";
 import { HeroTitle } from "./components/About/HeroTitle";
 import { HeroBullets } from "./components/Roadmap/HeroBullets";
 import ChatUI from "./components/ChatAi/ChatUi";
-import { RetroGrid } from "@/components/magicui/retro-grid";
 export default function Home() {
   useEffect(() => {
     AOS.init();
@@ -39,7 +37,7 @@ export default function Home() {
             <Container mx="auto">
               <CardWithStats />
             </Container>
-          </div> 
+          </div>
           <div data-aos="zoom-up">
             <Container mx="auto">
               <h2 className="font-semibold mt-4 mb-4">Scan Image</h2>

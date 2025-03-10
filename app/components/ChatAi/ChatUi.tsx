@@ -14,7 +14,6 @@ const ChatUI: React.FC = () => {
   const handleSend = async () => {
     if (input.trim() === "") return;
 
-    // Tambahkan pesan user
     const userMessage: Message = {
       id: Date.now().toString(),
       text: input,
