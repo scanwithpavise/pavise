@@ -182,7 +182,7 @@ export function DropzoneButton() {
           drawBoundingBoxes(formattedPredictions);
           setOpened(true);
           const aiResponse = await sendPredictionsToAI(
-            "please give recommendations for treatment of tumors",
+            "give recommendations for treatment of",
             formattedPredictions
           );
         } else {
