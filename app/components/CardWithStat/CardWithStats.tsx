@@ -56,12 +56,12 @@ export function CardWithStats() {
           </Text>
           <Group gap={5}>
             <Text fz="xs" c="dimmed">
-              25% on progress
+              50% on progress
             </Text>
             <RingProgress
               size={18}
               thickness={2}
-              sections={[{ value: 25, color: "red" }]}
+              sections={[{ value: 50, color: "orange" }]}
             />
           </Group>
         </Group>
@@ -77,12 +77,12 @@ export function CardWithStats() {
           </Text>
           <Group gap={5}>
             <Text fz="xs" c="dimmed">
-              50% onprogress
+              100% completed
             </Text>
             <RingProgress
               size={18}
               thickness={2}
-              sections={[{ value: 50, color: "yellow" }]}
+              sections={[{ value: 100, color: "green" }]}
             />
           </Group>
         </Group>
