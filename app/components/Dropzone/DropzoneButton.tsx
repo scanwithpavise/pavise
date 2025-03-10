@@ -99,18 +99,16 @@ export function DropzoneButton() {
   const handleDrop = async (acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFiles(acceptedFiles);
-      setImageUploaded(true); // Set state imageUploaded ke true
-      setPredictions(null); // Reset predictions saat gambar baru diunggah
+      setImageUploaded(true); 
+      setPredictions(null); 
 
       const reader = new FileReader();
       reader.onload = (event) => {
         if (imageRef.current && event.target) {
-          const img = imageRef.current; // ⬅️ Simpan dalam variabel agar TypeScript mengenalinya
+          const img = imageRef.current;
           img.src = event.target.result as string;
-          img.style.display = "block"; // ⬅️ Tidak error lagi
+          img.style.display = "block"; 
         }
-
-        // Bersihkan canvas saat gambar baru diunggah
         const canvas = canvasRef.current;
         if (canvas) {
           const ctx = canvas.getContext("2d");
@@ -251,7 +249,7 @@ export function DropzoneButton() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: "300px", // Tetapkan tinggi minimal untuk dropzone
+          minHeight: "300px",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background =
@@ -324,9 +322,9 @@ export function DropzoneButton() {
             style={{
               borderRadius: "10px",
               maxWidth: "100%",
-              marginLeft: "auto", // Tengahkan secara horizontal
-              marginRight: "auto", // Tengahkan secara horizontal
-              border: "1px solid #ccc", // Border biasa (tidak putus-putus)
+              marginLeft: "auto",
+              marginRight: "auto",
+              border: "1px solid #ccc",
             }}
           >
             <Text>{aiResponse.text}</Text>
